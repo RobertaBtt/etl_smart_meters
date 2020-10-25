@@ -11,6 +11,7 @@ and put the into the DynamoDB table.
 - Using the module  "api" inside the module django_app_smart_meters the content of the tables MySQL were read and made visible inside the Frontend of the End Users 
 and inside the Django admin backend.
 
+(ERP = Enterprise Resource Planning - were used to manage Energy contracts.)
 Very complicated !
 I'm working on lighten this architecture, by removing redundant elements
 
