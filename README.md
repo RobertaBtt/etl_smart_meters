@@ -1,24 +1,21 @@
-etl smart meters
+ETL Smart Meters (smartgrid_hub)
 ======================================
 
-### Old architecture
+This is part of the architecture of Enermed and Techus (2014-2018)
+
+
 - Messages arrive from Smartmeters every15 minutes
-- Throught mosquito they reach SQS Amazon
-- Inside the same Server there are some python routines that  extract the payload of the messages
-and put the into the DynamoDB table.
-- Inside the same server there were other python routins that copied the content into relational MySQL database, diving messages my type of the table
-- Using the "smartgrid" module inside the ERP, the content of the tables MySQL were read and made visible inside the ERP
-- Using the module  "api" inside the module django_app_smart_meters the content of the tables MySQL were read and made visible inside the Frontend of the End Users 
-and inside the Django admin backend.
+- Throughout Mosquito MQTT Broker they are read so they are put into the SQS Queue
+- ETL SmartMeters routines extract the payload of the messages and put the into the DynamoDB table.
+- ETL SmartMeters routines copy the content into relational MySQL database
 
-(ERP = Enterprise Resource Planning - were used to manage Energy contracts.)
-Very complicated !
-I'm working on lighten this architecture, by removing redundant elements
 
-![diagram](static/doc/GeneralSchema_OldArchitecture.jpg)
+![SmartMeters_data_backend.jpg](static%2FSmartMeters_data_backend.jpg)
 
 From SQS Amazon to DynamoDb Tables.
-Meter readings were divided into three kind:
+
+Meter readings were divided into three types of tables:
+
  - etl 18 for three-phase
  - etl 21 for single-phase
  - etl 30 for messages of control
@@ -37,6 +34,4 @@ Meter readings were divided into three kind:
  - energia_attiva_immisione_r,energia_attiva_immisione_s,energia_attiva_immisione_t,energia_attiva_immisione_sum,
  - energia_reattiva_immissione_r,energia_reattiva_immissione_s,energia_reattiva_immissione_t,energia_reattiva_immissione_sum,
  - energia_reattiva_prelievo_r,energia_reattiva_prelievo_s,energia_reattiva_prelievo_t,energia_reattiva_prelievo_sum
- 
-At that time fields were decided in italian, but basically it divide parameters into the three phases
- 
+  
